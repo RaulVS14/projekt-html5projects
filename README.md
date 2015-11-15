@@ -27,3 +27,5 @@ Lecture 7: Javascript Bascics Part - B
 Lecture 8: HTML5 Page Structure Part - A
 
 Lecture 9: HTML5 Page Structure Part - B
+
+Lecture 10: Styling with CSS3 Path - A
