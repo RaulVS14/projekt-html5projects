@@ -13,3 +13,17 @@ Lecture 1: Course Introduction
 Lecture 2: HTML5 Feature Overview
 
 Lecture 3: HTML5 Boiler Plate
+
+Lecture 4: CSS Styling Part - A
+
+Lecture 5: CSS Styling Part - B
+
+Lecture 6: Javascript Bascics Part - A
+
+Lecture 7: Javascript Bascics Part - B
+
+# Section: 3 - Blog Frontend
+
+Lecture 8: HTML5 Page Structure Part - A
+
+Lecture 9: HTML5 Page Structure Part - B
