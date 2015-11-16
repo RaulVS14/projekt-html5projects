@@ -43,3 +43,5 @@ Lecture 14: Responsive Layout
 Lecture 15: Gallery HTML
 
 Lecture 16: Gallery CSS
+
+Lecture 17: Quicksand Animation Part - A
