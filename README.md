@@ -31,3 +31,5 @@ Lecture 9: HTML5 Page Structure Part - B
 Lecture 10: Styling with CSS3 Path - A
 
 Lecture 11: Styling with CSS3 Path - B
+
+Lecture 12: Add Pages and Forms - A
