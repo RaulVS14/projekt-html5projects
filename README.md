@@ -37,3 +37,7 @@ Lecture 12: Add Pages and Forms - A
 Lecture 13: Add Pages and Forms - B
 
 Lecture 14: Responsive Layout
+
+# Section: 4 - Animated Image Gallery
+
+Lecture 15: Gallery HTML
