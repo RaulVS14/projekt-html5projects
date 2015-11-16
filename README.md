@@ -35,3 +35,5 @@ Lecture 11: Styling with CSS3 Path - B
 Lecture 12: Add Pages and Forms - A
 
 Lecture 13: Add Pages and Forms - B
+
+Lecture 14: Responsive Layout
