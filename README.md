@@ -41,3 +41,5 @@ Lecture 14: Responsive Layout
 # Section: 4 - Animated Image Gallery
 
 Lecture 15: Gallery HTML
+
+Lecture 16: Gallery CSS
