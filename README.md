@@ -53,3 +53,5 @@ Lecture 19: Fancybox Lightbox
 # Section: 5 - Snake Game
 
 Lecture 20: HTML5 Canvas Part - A
+
+Lecture 21: HTML5 Canvas Part - B
