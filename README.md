@@ -47,3 +47,5 @@ Lecture 16: Gallery CSS
 Lecture 17: Quicksand Animation Part - A
 
 Lecture 18: Quicksand Animation Part - B
+
+Lecture 19: Fancybox Lightbox
