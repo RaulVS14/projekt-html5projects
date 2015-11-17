@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    var items=$('#gallery li'),
-        itemsByTags=[];
+    var items = $('#gallery').find('li'),
+        itemsByTags = {};
 
     // Loop Through Tags
 
@@ -25,5 +25,36 @@ $(document).ready(function(){
     createList("All Items", items);
     $.each(itemsByTags,function(k, v){
         createList(k,v);
-    })
+    });
+
+    // Click Handler
+
+    $(document).on('click',"#navbar a",function(e){
+        var link = $(this);
+
+        link.addClass('active').siblings().removeClass('active');
+        $('#gallery').quicksand(link.data('list').find('li'));
+        e.preventDefault();
+    });
+
+    $('#navbar').find(' a:first').click();
+
+    // Create the lists
+    function createList(text,items){
+        // Create empty ul
+        var ul =$('<ul>',{'class':'hidden'});
+        $.each(items,function(){
+           $(this).clone().appendTo(ul);
+        });
+
+        // Add gallery div
+        ul.appendTo('#gallery');
+
+        // Create menu item
+        var a = $('<a>',{
+            html:text,
+            href:'#',
+            data:{list:ul}
+        }).appendTo('#navbar')
+    }
 });
