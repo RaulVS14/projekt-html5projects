@@ -49,3 +49,7 @@ Lecture 17: Quicksand Animation Part - A
 Lecture 18: Quicksand Animation Part - B
 
 Lecture 19: Fancybox Lightbox
+
+# Section: 5 - Snake Game
+
+Lecture 20: HTML5 Canvas Part - A
