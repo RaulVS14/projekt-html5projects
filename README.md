@@ -55,3 +55,5 @@ Lecture 19: Fancybox Lightbox
 Lecture 20: HTML5 Canvas Part - A
 
 Lecture 21: HTML5 Canvas Part - B
+
+Lecture 22: Animation and Circles
