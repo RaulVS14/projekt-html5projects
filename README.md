@@ -61,3 +61,5 @@ Lecture 22: Animation and Circles
 Lecture 23: Snake Game UI - HTML
 
 Lecture 24: Snake Game UI - CSS
+
+Lecture 25: Snake Game Scripting - Part A
