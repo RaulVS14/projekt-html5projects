@@ -69,3 +69,7 @@ Lecture 26: Snake Game Scripting - Part B
 Lecture 27: Snake Game Scripting - Part C
 
 Lecture 28: Snake Game Scripting - Part D
+
+# Section: 6 - Stickys
+
+Lecture 29: Stickys UI Part - A
