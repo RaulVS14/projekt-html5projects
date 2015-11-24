@@ -79,3 +79,5 @@ Lecture 30: Stickys UI Part - B
 Lecture 31: Create Note Object Part - A
 
 Lecture 32: Create Note Object Part - B
+
+Lecture 33: Drag and Drop Functions Part - A

@@ -62,52 +62,110 @@ function Note() {
 }
 
 Note.prototype = {
-    get id(){
-        if(!("_id" in this)){
+
+    get id() {
+        if (!("_id" in this)) {
             this._id = 0;
         }
         return this._id;
     },
-    set id(x){
+
+    set id(x) {
         this._id = x;
     },
-    get text(){
+
+    get text() {
         return this.editField.innerHTML;
     },
-    set text(x){
+
+    set text(x) {
         this.editField.innerHTML = x;
     },
-    get timestamp(){
-        if(!("_timestamp" in this)){
+
+    get timestamp() {
+        if (!("_timestamp" in this)) {
             this._timestamp = 0;
         }
         return this._timestamp;
     },
+
     set timestamp(x) {
-        if(this._timestamp == x){
+        if (this._timestamp == x) {
             return;
         }
         this._timestamp = x;
         var date = new Date();
         date.setTime(parseFloat(x));
-        this.lastModified.textContent = modifiedString (date);
+        this.lastModified.textContent = modifiedString(date);
     },
-    get left(){
+
+    get left() {
         return this.note.style.left;
     },
-    set left(x){
+
+    set left(x) {
         this.note.style.left = x;
     },
-    get top(){
+
+    get top() {
         return this.note.style.top;
     },
-    set top(x){
+
+    set top(x) {
         this.note.style.top = x;
     },
-    get zIndex(){
+
+    get zIndex() {
         return this.note.style.zIndex;
     },
-    set zIndex(x){
+
+    set zIndex(x) {
         this.note.style.zIndex = x;
+    },
+
+    close: function(e){
+        this.cancelPendingSave();
+        var note = this;
+        db.transaction(function(tx){
+            tx.executeSql("DELETE FROM MyStickys WHERE id =?", [note.id]);
+        })
+        document.body.removeChild(this.note);
+    },
+
+    saveSoon: function(){
+        this.cancelPendingSave();
+        var self = this;
+        this._saveTimer = setTimeout(function(){
+            self.save();
+        },200);
+    },
+
+    cancelPendingSave: function(){
+        if(!("_saveTimer" in this)){
+            return;
+        }
+        clearTimeout(this._saveTimer);
+        delete this._saveTimer;
+    },
+
+    save: function () {
+        this.cancelPendingSave();
+        if("dirty" in this){
+            this.timestamp = new Date().getTime();
+            delete this.dirty;
+        }
+        var note = this;
+        db.transaction(function(tx){
+            tx.executeSql("UPDATE MyStickys SET note = ?, timestamp = ?, left = ?, top = ?, zindex = ? WHERE id= ?",[note.text, note.timestamp, note.left, note.top, note.zIndex, note.id]);
+        });
+    },
+
+    saveAsNew: function(){
+        this.timestamp = new Date.getTime();
+
+        var note = this;
+        db.transaction(function(tx){
+            tx.executeSql("INSERT INTO MyStickys (id, note, timestamp, left, top, zindex)");
+        })
     }
 }
