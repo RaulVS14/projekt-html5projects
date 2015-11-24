@@ -93,3 +93,5 @@ Lecture 36: Saving Notes and Debugging Part - B
 Lecture 37: Image Uploader UI - HTML
 
 Lecture 38: Image Uploader UI - CSS
+
+Lecture 39: JQuery File Drop Part - A
