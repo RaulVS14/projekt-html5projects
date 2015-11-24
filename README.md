@@ -65,3 +65,5 @@ Lecture 24: Snake Game UI - CSS
 Lecture 25: Snake Game Scripting - Part A
 
 Lecture 26: Snake Game Scripting - Part B
+
+Lecture 27: Snake Game Scripting - Part C

@@ -5,7 +5,7 @@ $(document).ready(function () {
     var w = canvas.width;
     var h = canvas.height;
     var cw = 15;
-    var d = "right";
+    var d;
     var food;
     var score;
     var color = "green";
@@ -17,6 +17,7 @@ $(document).ready(function () {
 
     // Initializer
     function init() {
+        d="right";
         create_snake();
         createFood();
         score = 0;
@@ -71,8 +72,13 @@ $(document).ready(function () {
 
         // Collision code
         if (nx == -1 || nx == w / cw || ny == -1 || ny == h / cw || checkCollision(nx, ny, snake_array)) {
-            init();
+            // init();
 
+            // Insert Final Score
+            $('#final_score').html(score);
+
+            // Show Overlay
+            $('#overlay').fadeIn(300);
             return;
         }
 
@@ -87,7 +93,9 @@ $(document).ready(function () {
             tail.x = nx;
             tail.y = ny;
         }
+
         snake_array.unshift(tail);
+
         for (var i = 0; i < snake_array.length; i++) {
             var c = snake_array[i];
             paint_cell(c.x, c.y);
@@ -99,14 +107,14 @@ $(document).ready(function () {
         checkScore(score);
 
     }
-
+    // Paint Cell function
     function paint_cell(x,y){
         ctx.fillStyle = color;
         ctx.fillRect(x*cw,y*cw,cw,cw);
         ctx.strokeStyle ="white";
         ctx.strokeRect(x*cw,y*cw,cw,cw);
     }
-
+    // function
     function checkCollision(x, y, array){
         for(var i = 0; i < array.length; i++){
             if (array[i].x == x && array[i].y == y){
@@ -115,4 +123,21 @@ $(document).ready(function () {
         }
         return false;
     }
+
+    // Keyboard Controller
+    $(document).keydown(function(e){
+        var key = e.which;
+        if(key == "37" && d !="right"){
+            d="left";
+        }
+        else if(key == "38" && d !="down"){
+            d="up";
+        }
+        else if(key == "39" && d !="left"){
+            d="right";
+        }
+        else if(key == "40" && d !="up"){
+            d="down";
+        }
+    });
 });
