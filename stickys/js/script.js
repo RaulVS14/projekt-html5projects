@@ -220,3 +220,48 @@ Note.prototype = {
         this.saveSoon();
     }
 }
+
+function loaded(){
+    db.transaction(function(tx){
+        tx.executeSql("SELECT COUNT(*) FROM MyStickys", [], function(result){
+            loadNotes();
+        }, function(tx,error){
+            tx.executeSql("CREATE TABlE MyStickys(id REAL UNIQUE, note TEXT, timestamp REAL, left TEXT, top TEXT, zindex REAL)",[],function(result){
+                loadNotes();
+            });
+        });
+    });
+}
+
+function loadNotes(){
+    db.transaction(function(tx){
+        tx.executeSql("SELECT id, note, timestamp, left, top, zindex FROM MyStickys",[],function(tx, result){
+            for(var i = 0; i < result.rows.length; i++){
+                var row = result.rows.item(i);
+                var note = new Note();
+                note.id = row['id'];
+                note.text = row['note'];
+                note.timestamp = row['timestamp'];
+                note.left = row['left'];
+                note.top = row['top'];
+                note.zIndex = row['zindex'];
+
+                if(row['id']>highestId){
+                    highestId = row['id'];
+                }
+                if(row['zindex']>highestZ){
+                    highestZ = row['zindex'];
+                }
+            }
+            if(!result.rows.length){
+                newNote();
+            }
+        },function(tx, error){
+            alert("Failed to get notes" + error.message);
+        });
+    });
+}
+
+function modifiedString(){
+    return "Sticky Last Modified: " + date.getFullYear() + " - " + (date.getMonth()+1) + " - " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+}
