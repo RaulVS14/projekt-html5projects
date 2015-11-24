@@ -73,3 +73,5 @@ Lecture 28: Snake Game Scripting - Part D
 # Section: 6 - Stickys
 
 Lecture 29: Stickys UI Part - A
+
+Lecture 30: Stickys UI Part - B
