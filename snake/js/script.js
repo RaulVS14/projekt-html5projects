@@ -8,8 +8,8 @@ $(document).ready(function () {
     var d;
     var food;
     var score;
-    var color = "green";
-    var speed = 130;
+    var color = "blue";
+    var speed = 50;
     var tail;
 
     // Snake Array
@@ -106,6 +106,8 @@ $(document).ready(function () {
         // Check Score
         checkScore(score);
 
+        // Display Current Score
+        $('#score').html('Your score: '+ score);
     }
     // Paint Cell function
     function paint_cell(x,y){
@@ -122,6 +124,20 @@ $(document).ready(function () {
             }
         }
         return false;
+    }
+
+    function checkScore(score){
+        if(localStorage.getItem('highscore')=== null){
+            // If there is no high score
+            localStorage.setItem('highscore',score);
+        } else {
+            // If there is a high score
+            if(score> localStorage.getItem('highscore')){
+                localStorage.setItem('highscore',score);
+            }
+        }
+
+        $('#high_score').html('High Score: ' + localStorage.highscore);
     }
 
     // Keyboard Controller
@@ -141,3 +157,10 @@ $(document).ready(function () {
         }
     });
 });
+
+function resetScore(){
+    localStorage.highscore = 0;
+    // Display High Score
+    highscoreDiv = document.getElementById('high_score');
+    highscoreDiv.innerHTML = 'High Score: 0';
+}
