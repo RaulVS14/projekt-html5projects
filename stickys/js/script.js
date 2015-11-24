@@ -9,7 +9,7 @@ if (window.openDatabase) {
     alert("Failed to open database, make sure your browser supports HTML5 web storage");
 }
 
-var capture = null;
+var captured = null;
 var highestZ = 0;
 var highestId = 0;
 
@@ -25,7 +25,7 @@ function Note() {
     }, false);
 
     note.addEventListener('click', function (e) {
-        return self.onNoteClick();
+        return self.onNoteClick(e);
     }, false);
 
     this.note = note;
@@ -43,10 +43,10 @@ function Note() {
     // Edit
     var edit = document.createElement('div');
     edit.className = 'edit';
-    edit.setAttribute('contenteditable', false);
+    edit.setAttribute('contenteditable', true);
 
     edit.addEventListener('keyup', function () {
-        return self.OnKeyUp();
+        return self.onKeyUp();
     }, false);
     note.appendChild(edit);
     this.editField = edit;
@@ -115,8 +115,8 @@ Note.prototype = {
         return this.note.style.top;
     },
 
-    set top(x) {
-        this.note.style.top = x;
+    set top(y) {
+        this.note.style.top = y;
     },
 
     get zIndex() {
@@ -131,7 +131,7 @@ Note.prototype = {
         this.cancelPendingSave();
         var note = this;
         db.transaction(function (tx) {
-            tx.executeSql("DELETE FROM MyStickys WHERE id =?", [note.id]);
+            tx.executeSql("DELETE FROM MyStickys WHERE id = ?", [note.id]);
         })
         document.body.removeChild(this.note);
     },
@@ -140,7 +140,7 @@ Note.prototype = {
         this.cancelPendingSave();
         var self = this;
         this._saveTimer = setTimeout(function () {
-            self.save();
+            self.save()
         }, 200);
     },
 
@@ -165,7 +165,7 @@ Note.prototype = {
     },
 
     saveAsNew: function () {
-        this.timestamp = new Date.getTime();
+        this.timestamp = new Date().getTime();
 
         var note = this;
         db.transaction(function (tx) {
@@ -174,7 +174,7 @@ Note.prototype = {
     },
 
     onMouseDown: function (e) {
-        capture = this;
+        captured = this;
         this.startX = e.clientX - this.note.offsetLeft;
         this.startY = e.clientY - this.note.offsetTop;
         this.zIndex = ++highestZ;
@@ -191,6 +191,8 @@ Note.prototype = {
 
         document.addEventListener("mousemove", this.mouseMoveHandler, true);
         document.addEventListener("mouseup", this.mouseUpHandler, true);
+
+        return false;
     },
 
     onMouseMove: function (e) {
@@ -203,40 +205,41 @@ Note.prototype = {
     },
 
     onMouseUp: function (e) {
-        document.removeEventListener("mousemove", this.mouseOverHandler, true);
+        document.removeEventListener("mousemove", this.mouseMoveHandler, true);
         document.removeEventListener("mouseup", this.mouseUpHandler, true);
 
-        this.save();
+        console.log(this.save());
+
         return false;
     },
 
-    onNoteClick: function(e){
+    onNoteClick: function (e) {
         this.editField.focus();
         getSelection().collapseToEnd();
     },
 
-    onKeyUp: function(){
+    onKeyUp: function () {
         this.dirty = true;
         this.saveSoon();
     }
 }
 
-function loaded(){
-    db.transaction(function(tx){
-        tx.executeSql("SELECT COUNT(*) FROM MyStickys", [], function(result){
+function loaded() {
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT COUNT(*) FROM MyStickys", [], function (result) {
             loadNotes();
-        }, function(tx,error){
-            tx.executeSql("CREATE TABlE MyStickys(id REAL UNIQUE, note TEXT, timestamp REAL, left TEXT, top TEXT, zindex REAL)",[],function(result){
+        }, function (tx, error) {
+            tx.executeSql("CREATE TABLE MyStickys(id REAL UNIQUE, note TEXT, timestamp REAL, left TEXT, top TEXT, zindex REAL)", [], function (result) {
                 loadNotes();
             });
         });
     });
 }
 
-function loadNotes(){
-    db.transaction(function(tx){
-        tx.executeSql("SELECT id, note, timestamp, left, top, zindex FROM MyStickys",[],function(tx, result){
-            for(var i = 0; i < result.rows.length; i++){
+function loadNotes() {
+    db.transaction(function (tx) {
+        tx.executeSql("SELECT * FROM MyStickys", [], function (tx, result) {
+            for (var i = 0; i < result.rows.length; i++) {
                 var row = result.rows.item(i);
                 var note = new Note();
                 note.id = row['id'];
@@ -246,22 +249,36 @@ function loadNotes(){
                 note.top = row['top'];
                 note.zIndex = row['zindex'];
 
-                if(row['id']>highestId){
+                if (row['id'] > highestId) {
                     highestId = row['id'];
                 }
-                if(row['zindex']>highestZ){
+                if (row['zindex'] > highestZ) {
                     highestZ = row['zindex'];
                 }
             }
-            if(!result.rows.length){
+            if (!result.rows.length) {
                 newNote();
             }
-        },function(tx, error){
+        }, function (tx, error) {
             alert("Failed to get notes" + error.message);
         });
     });
 }
 
-function modifiedString(){
-    return "Sticky Last Modified: " + date.getFullYear() + " - " + (date.getMonth()+1) + " - " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+function modifiedString(date) {
+    return "Sticky Last Modified: " + date.getFullYear() + " - " + (date.getMonth() + 1) + " - " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+}
+
+function newNote() {
+    var note = new Note();
+    note.id = ++highestId;
+    note.timestamp = new Date().getTime();
+    note.left = Math.round(Math.random() * 400) + "px";
+    note.top = Math.round(Math.random() * 500) + "px";
+    note.zIndex = ++highestZ;
+    note.saveAsNew();
+}
+
+if (db != null) {
+    document.addEventListener("load", loaded(), false);
 }
