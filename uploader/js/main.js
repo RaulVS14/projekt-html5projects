@@ -40,11 +40,12 @@ $(function () {
     });
     var template = '<div class ="preview">' +
         '<span class="imageHolder">' +
-        '<img />' +
+            '<span class="uploaded"></span>'+
+            '<img />' +
         '</span>' +
         '<div class="progressHolder">' +
-        '<div class="progress"></div>' +
-        '</div>' +
+            '<div class="progress"></div>' +
+            '</div>' +
         '</div>';
 
     function createImage(file) {
@@ -68,5 +69,4 @@ $(function () {
     function showMessage(msg) {
         back.html(msg);
     }
-
 });
