@@ -1,18 +1,17 @@
-$(function(){
-    var pickbox = $('#pickbox'),
-        back = $('.back', pickbox);
+$(function () {
+    var picbox = $('#picbox'),
+        back = $('.back', picbox);
 
-    pickbox.filedrop({
-        paramname:'pic',
+    picbox.filedrop({
+        paramname: 'pic',
         maxfilesize: 2,
         maxfiles: 6,
-        url:'uploader/upload.php',
-
-        uploadFinished: function(i,file, response){
+        url: 'uploader/upload.php',
+        uploadFinished: function (i, file, response, time) {
             $.data(file).addClass('done');
         },
-        error:function(err,file){
-            switch (err){
+        error: function (err, file) {
+            switch (err) {
                 case 'BrowserNotSupported':
                     showMessage('Your browser does not support HTML5 file upload');
                     break;
@@ -26,14 +25,48 @@ $(function(){
                     break;
             }
         },
-        beforeEach: function(file){
-            if(!file.type.match(/^image\//)){
+        beforeEach: function (file) {
+            if (!file.type.match(/^image\//)) {
                 alert('Your file is not an image');
                 return false;
             }
         },
-        uploadStart: function(i,file,length){
-
+        uploadStarted: function (i, file, length) {
+            createImage(file);
+        },
+        progressUpdated: function (i, file, progress) {
+            $.data(file).find('.progress').width(progress);
         }
-    })
+    });
+    var template = '<div class ="preview">' +
+        '<span class="imageHolder">' +
+        '<img />' +
+        '</span>' +
+        '<div class="progressHolder">' +
+        '<div class="progress"></div>' +
+        '</div>' +
+        '</div>';
+
+    function createImage(file) {
+        var preview = $(template),
+            image = $('img', preview);
+        var reader = new FileReader();
+        image.width = 100;
+        image.height = 100;
+
+        reader.onload = function (e) {
+            image.attr('src', e.target.result);
+        };
+        reader.readAsDataURL(file);
+
+        back.hide();
+        preview.appendTo(picbox);
+
+        $.data(file, preview);
+    }
+
+    function showMessage(msg) {
+        back.html(msg);
+    }
+
 });

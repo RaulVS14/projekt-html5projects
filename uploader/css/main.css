@@ -18,7 +18,7 @@ header h1{
     padding: 5px;
 }
 
-#pickbox{
+#picbox{
     width: 650px;
     margin: 50px auto;
     border: 1px dotted #ccc;
@@ -26,14 +26,14 @@ header h1{
     overflow: auto;
 }
 
-#pickbox .back{
+#picbox .back{
     text-align: center;
     padding-top: 100px;
     display: block;
     opacity: 0.4;
 }
 
-#pickbox .preview{
+#picbox .preview{
     width: 245px;
     height: 215px;
     float: left;
@@ -42,7 +42,7 @@ header h1{
     text-align: center;
 }
 
-#pickbox .preview img{
+#picbox .preview img{
     max-width: 240px;
     max-height: 180px;
     border: 3px solid #fff;
@@ -50,12 +50,12 @@ header h1{
     box-shadow: 0 0 2px #000;
 }
 
-#pickbox .imageHolder{
+#picbox .imageHolder{
     display: inline-block;
     position: relative;
 }
 
-#pickbox .uploaded{
+#picbox .uploaded{
     position:absolute;
     top:0;
     left:0;
@@ -64,8 +64,7 @@ header h1{
     background: url(../img/check.png) no-repeat center center rgba(255,255,255,0.5);
     display: none;
 }
-
-#pickbox .progressHolder{
+#picbox .progressHolder{
     position: absolute;
     background: #252f38;
     height: 12px;
@@ -75,7 +74,7 @@ header h1{
     box-shadow: 0 0 2px #000;
 }
 
-#pickbox .progress{
+#picbox .progress{
     background: #2586d0;
     position: absolute;
     width: 100%;
@@ -89,6 +88,6 @@ header h1{
     transition: 0.25s;
 }
 
-#pickbox .preview .done .progress{
+#picbox .preview .done .progress{
     width: 100% !important;
 }

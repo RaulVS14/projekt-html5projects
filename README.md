@@ -95,3 +95,5 @@ Lecture 37: Image Uploader UI - HTML
 Lecture 38: Image Uploader UI - CSS
 
 Lecture 39: JQuery File Drop Part - A
+
+Lecture 40: JQuery File Drop Part - B
