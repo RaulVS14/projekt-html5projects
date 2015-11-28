@@ -105,3 +105,5 @@ Lecture 42: PHP Upload File Part - B
 # Section: 8 - Quiz Application
 
 Lecture 43: Quiz UI - HTML Part - A
+
+Lecture 44: Quiz UI - HTML Part - B
