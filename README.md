@@ -117,3 +117,7 @@ Lecture 47: Process Questions
 Lecture 48: Optimizing Our Code Part - A
 
 Lecture 49: Optimizing Our Code Part - B
+
+# Section: 9 - HTML5 Audio Player
+
+Lecture 50: Audio player UI - HTML Part - A
