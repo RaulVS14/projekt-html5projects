@@ -1,6 +1,6 @@
 var score = 0; // Set score to 0
 var total = 5; // Total number of questions
-var point = 1; // Points per correct answer
+var point = 2; // Points per correct answer
 var highest = total * point;
 
 // Initializer
@@ -33,6 +33,7 @@ $(document).ready(function(){
         $('#q'+next+'').fadeIn(300);
 
         process(''+current+'');
+        console.log(score);
         return false;
 
     });
@@ -45,38 +46,17 @@ function process(n){
 
     // Get input value
 
-    var submitted = $('input[name="q1"]:checked').val();
-
-    if(q == "q1"){
-        var submitted = $('input[name="q1"]:checked').val();
-        if(submitted == sessionStorage.a1){
-            score++;
-        }
+    var submitted = $('input[name=q'+n+']:checked').val();
+    if(submitted == sessionStorage.getItem('a'+n+'')){
+        score = score + point;
     }
-    if(q == "q2"){
-        var submitted = $('input[name="q2"]:checked').val();
-        if(submitted == sessionStorage.a2){
-            score++;
+    if(n == total){
+        $('#results').html('<h3>Your final score is: ' + score + ' out of '+ highest+'</h3><a href="quiz.html">Take Quiz Again</a>')
+        if(score == highest){
+            $('#results').append('<p>You are an HTML5 Master</p>')
+        } else if(score == highest - point || score == highest - point * 2 ){
+            $('#results').append('<p>Good Job!</p>');
         }
-    }
-    if(q == "q3"){
-        var submitted = $('input[name="q3"]:checked').val();
-        if(submitted == sessionStorage.a3){
-            score++;
-        }
-    }
-    if(q == "q4"){
-        var submitted = $('input[name="q4"]:checked').val();
-        if(submitted == sessionStorage.a4){
-            score++;
-        }
-    }
-    if(q == "q5"){
-        var submitted = $('input[name="q5"]:checked').val();
-        if(submitted == sessionStorage.a5){
-            score++;
-        }
-        $('#results').html('<h3>Your final score is: ' + score + ' out of 5</h3><a href="quiz.html">Take Quiz Again</a>')
         return false;
     }
 }

@@ -115,3 +115,5 @@ Lecture 46: DOM Manipulation
 Lecture 47: Process Questions
 
 Lecture 48: Optimizing Our Code Part - A
+
+Lecture 49: Optimizing Our Code Part - B
