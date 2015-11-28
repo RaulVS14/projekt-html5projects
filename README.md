@@ -109,3 +109,5 @@ Lecture 43: Quiz UI - HTML Part - A
 Lecture 44: Quiz UI - HTML Part - B
 
 Lecture 45: Quiz UI - CSS
+
+Lecture 46: DOM Manipulation
