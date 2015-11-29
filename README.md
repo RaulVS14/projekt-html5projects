@@ -140,3 +140,5 @@ Lecture 57: Playlist Functionality Part - B
 
 Lecture 58: JQuery Mobile - Part A
 
+Lecture 59: JQuery Mobile - Part B
+

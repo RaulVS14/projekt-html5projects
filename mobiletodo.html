@@ -8,7 +8,24 @@
     <link rel="stylesheet" href="mobiletodo/css/style.css">
 </head>
 <body>
-
+    <!-- Home Page -->
+    <div data-role="page" id="home">
+        <header data-role="header">
+            <h1>Mobile Todo</h1>
+        </header>
+        <main data-role="content" id="content">
+            <p><a href="#add" data-role="button">Add A Todo</a></p>
+            <p><a href="index.html" id="clear_btn" data-role="button" data-theme="b">Clear All Todos</a></p>
+            <ul id="todos" data-role="listview" data-filter="true" data-filte-placeholder="Search Todos..." data-inset="true">
+                <li>Pick up kids</li>
+                <li>Meeting with boss</li>
+                <li>Dinner with wife</li>
+            </ul>
+        </main>
+        <footer data-role="footer" id="footer">
+            <h4>MobileTodo &copy; 2015</h4>
+        </footer>
+    </div>
 
 <script src="js/vendor/jquery-1.11.2.min.js"></script>
 <script src="mobiletodo/js/jquery.mobile-1.4.5.js"></script>
