@@ -171,3 +171,5 @@ Lecture 71: Update Customers
 # Section: 12 - Geolocation App
 
 Lecture 72: Distance Meter App Intro
+
+Lecture 73: Get User Location
