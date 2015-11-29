@@ -6,7 +6,7 @@ $(function () {
         paramname: 'pic',
         maxfilesize: 2,
         maxfiles: 6,
-        url: 'uploader/upload.php',
+        url: 'upload.php',
         uploadFinished: function (i, file, response, time) {
             $.data(file).addClass('done');
         },

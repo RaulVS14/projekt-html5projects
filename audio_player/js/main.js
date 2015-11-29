@@ -10,7 +10,7 @@ function initAudio(element){
     var cover = element.attr('cover');
     var artist = element.attr('artist');
     // Create audio object
-    audio = new Audio('audio_player/media/'+song);
+    audio = new Audio('media/'+song);
 
     // Set starting volume
     audio.volume = parseFloat($('#volume').val()/100);
@@ -20,7 +20,7 @@ function initAudio(element){
     $('.title').text(title);
 
     // Insert song cover
-    $('img.cover').attr('src','audio_player/img/covers/'+cover);
+    $('img.cover').attr('src','img/covers/'+cover);
 
     //
     $('#playlist li').removeClass('active');

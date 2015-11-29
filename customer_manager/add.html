@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Customer Manager</title>
+    <title>Add Customer</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="customer_manager/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="customer_manager/css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,27 +37,23 @@
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="customermanager.html">Customers<span class="sr-only">(current)</span></a></li>
                 <li><a href="add.html">Add Customer</a></li>
-                <li><a onclick="clearCustomers()" class="danger" href="#">Clear Customers</a></li>
+                <li><a class="danger" href="#">Clear Customers</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Customers</h1>
+            <h1 class="page-header">Add Customer</h1>
 
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody id="customers">
-
-                    </tbody>
-                </table>
-            </div>
+            <form role="form" onsubmit="addCustomer();">
+                <div class="form-group">
+                    <label>Customer Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                    <label>Customer Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter Email">
+                </div>
+                <button type="submit" class="btn btn-default">Add Customer</button>
+            </form>
         </div>
     </div>
 </div>
@@ -67,9 +63,9 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="customer_manager/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
-<script src="customer_manager/js/main.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

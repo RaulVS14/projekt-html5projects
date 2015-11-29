@@ -175,3 +175,7 @@ Lecture 72: Distance Meter App Intro
 Lecture 73: Get User Location
 
 Lecture 74: Watch and Calculate
+
+# Section: 13 - Course Summary
+
+Lecture 75: Summary
