@@ -19,7 +19,7 @@
         </header>
         <main data-role="content" id="content">
             <p><a href="#add" data-role="button">Add A Todo</a></p>
-            <p><a href="mobiletodo.html" id="clear_btn" data-role="button" data-theme="b">Clear All Todos</a></p>
+            <p><a href="mobiletodo.html" data-ajax="false" id="clear_btn" data-role="button" data-theme="b">Clear All Todos</a></p>
             <ul id="todos" data-role="listview" data-filter="true" data-filte-placeholder="Search Todos..." data-inset="true">
 
             </ul>
@@ -32,7 +32,7 @@
     <!-- Add Page -->
     <div data-role="page" id="add">
         <header data-role="header">
-            <a href="mobiletodo.html" id="cancel_btn" data-icon="delete">Cancel</a>
+            <a href="mobiletodo.html"  id="cancel_btn" data-icon="delete">Cancel</a>
             <h1>Add A Todo</h1>
             <a href="mobiletodo.html" data-ajax="false" data-icon="check" data-theme="b" onclick="$('#add_form').submit();">Save</a>
         </header>
