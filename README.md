@@ -129,3 +129,5 @@ Lecture 52: Audio player UI - CSS Part - A
 Lecture 53: Audio player UI - CSS Part - B
 
 Lecture 54: Play Pause and Stop
+
+Lecture 55: Volume and Duration

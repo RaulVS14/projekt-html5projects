@@ -133,7 +133,7 @@ button#next{
 
 #progress{
     background: url(../img/progress.png) no-repeat;
-    height: 10px;
+    height: 14px;
     display: inline-block;
 }
 
