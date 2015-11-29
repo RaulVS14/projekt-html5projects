@@ -123,3 +123,5 @@ Lecture 49: Optimizing Our Code Part - B
 Lecture 50: Audio player UI - HTML Part - A
 
 Lecture 51: Audio player UI - HTML Part - B
+
+Lecture 52: Audio player UI - CSS Part - A
