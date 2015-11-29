@@ -163,3 +163,5 @@ Lecture 67: Customer manager UI Part - B
 Lecture 68: Database
 
 Lecture 69: Add & Get Customers
+
+Lecture 70: Delete Customers
