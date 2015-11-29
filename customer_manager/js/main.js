@@ -2,12 +2,11 @@ $(document).ready(function () {
     // Open Database
     var request = indexedDB.open("customermanager", 1);
 
-
     request.onupgradeneeded = function (e) {
         var db = e.target.result;
 
         if(!db.objectStoreNames.contains('customers')){
-            var os = db.createObjectStore('customers',{keyPath:"id", autoIncrement:true},{keyPath:""});
+            var os = db.createObjectStore('customers',{keyPath:"id", autoIncrement:true});
             // Create Index for Name
             os.createIndex('name','name',{unique:false});
         }
@@ -74,10 +73,10 @@ function showCustomers(){
     index.openCursor().onsuccess = function (e) {
         var cursor = e.target.result;
         if(cursor){
-            output += '<tr class="customer_'+cursor.value.id+'">';
+            output += '<tr id="customer_'+cursor.value.id+'">';
             output += '<td>'+cursor.value.id+'</td>';
-            output += '<td><span>'+cursor.value.name+'</span></td>';
-            output += '<td><span>'+cursor.value.email+'</span></td>';
+            output += '<td><span class="cursor customer" contenteditable="true" data-field="name" data-id="'+cursor.value.id+'">'+cursor.value.name+'</span></td>';
+            output += '<td><span class="cursor customer" contenteditable="true" data-field="email" data-id="'+cursor.value.id+'">'+cursor.value.email+'</span></td>';
             output += '<td><a onclick="removeCustomer('+cursor.value.id+')" href="">Delete</a></td>';
             output += '</tr>';
             cursor.continue();
@@ -97,7 +96,7 @@ function removeCustomer(id){
 
     // Success
     request.onsuccess = function () {
-        console.log('Customer'+id+': Deleted');
+        console.log('Customer '+ id +': Deleted');
         $('.customer_'+id).remove();
     }
 
@@ -113,3 +112,42 @@ function clearCustomers(){
     indexedDB.deleteDatabase('customermanager');
     window.location.href="customermanager.html";
 }
+
+// Update Customers
+$('#customers').on('blur','.customer', function (){
+
+    // Newly entered text
+    var newText = $(this).html();
+
+    // Field
+    var field = $(this).data('field');
+
+    // Customer ID
+    var id = $(this).data('id');
+
+    // Get Transaction
+    var transaction = db.transaction(["customers"],"readwrite");
+
+    //Ask for ObjectStore
+    var store = transaction.objectStore("customers");
+
+    var request = store.get(id);
+
+    // Success
+    request.onsuccess = function () {
+        var data = request.result;
+        data[field] = newText;
+        // Store Updated Text
+        var requestUpdate = store.put(data);
+
+        // Success
+        requestUpdate.onsuccess = function () {
+            console.log('Customer field updated ...');
+        }
+
+        // Error
+        requestUpdate.onerror = function () {
+            console.log('Customer field not updated ...');
+        }
+    }
+});
