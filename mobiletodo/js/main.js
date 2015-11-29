@@ -11,7 +11,7 @@ $(document).ready(function () {
         items='';
         // Loop through and output li items
         $.each(todoList, function (key,value) {
-            items='<li id="task-'+i+'"><a id="todo_link" href="#edit" data-todo_name="'+value.todo_name+'" data-todo_date="'+value.todo_date+'">'+value.todo_name+'</a></li>'+items;
+            items='<li id="task-'+i+'"><a id="todo_link" href="#edit" data-todo_name="'+value.todo_name+'" data-todo_date="'+value.todo_date+'">'+value.todo_name+'<span>'+value.todo_date+'</span></a></li>'+items;
             i++
         });
         $('#todos').html(items);
@@ -50,6 +50,31 @@ $(document).ready(function () {
             localStorage.setItem('todos', JSON.stringify(todos));
         }
     });
+
+    // Edit Todo
+    $('#edit_form').submit(function () {
+        currentTodoName = localStorage.getItem('currentTodoName');
+        currentTodoDate = localStorage.getItem('currentTodoDate');
+        for(var i = 0; i < todoList.length; i++){
+            if(todoList[i].todo_name == currentTodoName){
+                todoList.splice(i,1);
+            }
+            localStorage.setItem('todos', JSON.stringify(todoList));
+        }
+
+        var todo_name_edit = $('#todo_name_edit').val();
+        var todo_date_edit = $('#todo_date_edit').val();
+
+        var todos = JSON.parse(localStorage.getItem('todos'));
+
+        var update_todo = {
+            "todo_name": todo_name_edit,
+            "todo_date": todo_date_edit
+        };
+
+        todos.push(update_todo);
+        localStorage.setItem('todos', JSON.stringify(todos));
+    });
     
     //Delete Todo
     $('#edit_form').on('click','#delete', function () {
@@ -70,12 +95,12 @@ $(document).ready(function () {
         localStorage.setItem('currentTodoName',$(this).data('todo_name'));
         localStorage.setItem('currentTodoDate',$(this).data('todo_date'));
     });
-
+    // Insert current data into edit form
     $(document).on('pageshow','#edit', function () {
         currentTodoName = localStorage.getItem('currentTodoName');
         currentTodoDate = localStorage.getItem('currentTodoDate');
-        $('#edit_form input[name=todo_name]',this).val(currentTodoName);
-        $('#edit_form input[name=todo_date]',this).val(currentTodoDate);
+        $('#edit_form input[name=todo_name_edit]',this).val(currentTodoName);
+        $('#edit_form input[name=todo_date_edit]',this).val(currentTodoDate);
 
     });
 
