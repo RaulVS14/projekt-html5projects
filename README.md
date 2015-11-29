@@ -135,3 +135,8 @@ Lecture 55: Volume and Duration
 Lecture 56: Playlist Functionality Part - A
 
 Lecture 57: Playlist Functionality Part - B
+
+# Section: 10 - Mobile To Do App
+
+Lecture 58: JQuery Mobile - Part A
+
