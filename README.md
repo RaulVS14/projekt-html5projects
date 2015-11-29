@@ -157,3 +157,5 @@ Lecture 65: Updating ToDos
 # Section: 11 - Indexed DB App
 
 Lecture 66: Customer manager UI Part - A
+
+Lecture 67: Customer manager UI Part - B
