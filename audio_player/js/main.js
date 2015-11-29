@@ -2,7 +2,7 @@
 $('#pause').hide();
 
 var audio;
-initAudio('#playlist li:first-child');
+initAudio($('#playlist li:first-child'));
 
 function initAudio(element){
     var song = element.attr('song');
@@ -46,7 +46,43 @@ $('#pause').click(function(){
 $('#stop').click(function(){
     audio.pause();
     audio.currentTime = 0;
+    $('#pause').hide();
+    $('#play').show();
 });
+
+// Next button
+$('#next').click(function(){
+    audio.pause();
+    var next = $('#playlist li.active').next();
+    if(next.length == 0){
+        next = $('#playlist li:first-child');
+    }
+    initAudio(next);
+    audio.play();
+    showDuration();
+});
+
+// Prev button
+$('#prev').click(function(){
+    audio.pause();
+    var prev = $('#playlist li.active').prev();
+    if(prev.length == 0){
+        prev = $('#playlist li:last-child');
+    }
+    initAudio(prev);
+    audio.play();
+    showDuration();
+});
+
+// Playlist song click
+$('#playlist li').click(function(){
+    audio.pause();
+    initAudio($(this));
+    $('#play').hide();
+    $('#pause').show();
+    audio.play();
+    showDuration();
+})
 
 // Volume control
 $('#volume').change(function(){
@@ -71,3 +107,12 @@ function showDuration(){
     });
 }
 
+// Time jump
+$('#progress-bar').click(function(e){
+
+    var percent = e.offsetX / this.offsetWidth;
+    console.log(audio.currentTime);
+    audio.currentTime = percent * audio.duration;
+    console.log(audio.currentTime);
+    this.value = percent /100;
+});
