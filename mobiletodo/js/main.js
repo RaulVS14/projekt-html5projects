@@ -1,5 +1,26 @@
+// Set todo list variable
+var todoList = JSON.parse(localStorage.getItem('todos'));
+
 $(document).ready(function () {
-    // / Add a Todo
+
+    // Set Ccounter
+    var i = 0;
+
+    // Check for todos
+    if(localStorage.getItem('todos') != null){
+        items='';
+        // Loop through and output li items
+        $.each(todoList, function (key,value) {
+            items='<li id="task-'+i+'"><a id="todo_link" href="#edit" data-todo_name="'+value.todo_name+'" data-todo_date="'+value.todo_date+'">'+value.todo_name+'</a></li>'+items;
+            i++
+        });
+        $('#todos').html(items);
+        // Refresh
+        $('#todos').listview('refresh');
+    }
+
+
+    // Add a Todo
     $('#add_form').submit(function () {
 
         // Get submitted values
@@ -29,5 +50,5 @@ $(document).ready(function () {
             localStorage.setItem('todos', JSON.stringify(todos));
         }
     });
-
+    $('#todos').listview('refresh');
 });
