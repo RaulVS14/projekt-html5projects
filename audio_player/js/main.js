@@ -1,8 +1,32 @@
-var audio = new Audio('audio_player/media/01 - Styles Of Beyond - Nine Thou (Superstars Remix).mp3');
-
 // Hide Pause
 $('#pause').hide();
-audio.volume = parseFloat($('#volume').val()/100);
+
+var audio;
+initAudio('#playlist li:first-child');
+
+function initAudio(element){
+    var song = element.attr('song');
+    var title = element.text();
+    var cover = element.attr('cover');
+    var artist = element.attr('artist');
+    // Create audio object
+    audio = new Audio('audio_player/media/'+song);
+
+    // Set starting volume
+    audio.volume = parseFloat($('#volume').val()/100);
+
+    // Insert audio info
+    $('.artist').text(artist);
+    $('.title').text(title);
+
+    // Insert song cover
+    $('img.cover').attr('src','audio_player/img/covers/'+cover);
+
+    //
+    $('#playlist li').removeClass('active');
+    element.addClass('active');
+}
+
 // Play button
 $('#play').click(function(){
     audio.play();
